@@ -1,0 +1,45 @@
+export const BUSINESS = {
+  name: "HIDA Dumpster",
+  phone: "(765) 586-7136",
+  phoneHref: "tel:+17655867136",
+  whatsapp: "https://wa.me/17655867136",
+  email: "Andresrmzhidalgo@gmail.com",
+  hours: "6:00 AM – 7:00 PM Daily",
+  city: "Lafayette, Indiana",
+  zip: "47904",
+} as const
+
+export const PRICING = {
+  tenYard: {
+    size: "10 Yard",
+    price: 280,
+    description: "Perfect for small cleanouts, bathroom remodels, small decks",
+    includes: [
+      "Includes 2 tons of trash",
+      "7-day rental period",
+      "Extra ton: +$60",
+      "Extra day: +$30",
+    ],
+  },
+  fifteenYard: {
+    size: "15 Yard",
+    price: 370,
+    description: "Ideal for large renovations, roofing, garage and estate cleanouts",
+    includes: [
+      "Includes 2 tons of trash",
+      "7-day rental period",
+      "Extra ton: +$60",
+      "Extra day: +$30",
+    ],
+  },
+} as const
+
+export const SERVICE_AREAS = [
+  "Lafayette",
+  "West Lafayette",
+  "Frankfort",
+  "Crawfordsville",
+  "Delphi",
+  "Monticello",
+  "Attica",
+] as const
