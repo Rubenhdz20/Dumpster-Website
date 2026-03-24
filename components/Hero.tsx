@@ -34,14 +34,12 @@ export default function Hero() {
           className="object-cover object-center"
         />
         </div>
-
         <div
           aria-hidden="true"
           className="hidden md:block md:absolute md:inset-0 md:bg-black/50"
         />
-
         <div
-          className="relative bg-white px-5 py-8 md:flex md:min-h-[580px] md:items-center md:justify-center md:bg-transparent md:px-6 md:py-16"
+          className="relative bg-white px-5 py-8 md:flex md:min-h-[620px] md:items-center md:justify-center md:bg-transparent md:px-6 md:py-16"
         >
           <div className="mx-auto w-full max-w-[680px] md:text-center">
             <p className="mb-3 hidden font-[family-name:var(--font-inter)] text-xs font-semibold uppercase tracking-[0.1em] text-white/75 md:block">
@@ -85,7 +83,7 @@ export default function Hero() {
                 </a>
               ))}
             </div>
-          </div>
+        </div>
         </div>
       </div>
     </section>

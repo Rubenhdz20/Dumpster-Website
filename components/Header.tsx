@@ -44,7 +44,7 @@ export default function Header() {
             width={180}
             height={56}
             priority
-            className="h-[130px] w-auto object-contain sm:h-[74px]"
+            className="h-[130px] w-auto object-contain sm:h-[74px] md:h-[150px] lg:h-[170px]"
           />
         </Link>
 
@@ -53,7 +53,7 @@ export default function Header() {
             <a
               key={link.href}
               href={link.href}
-              className="group relative font-[family-name:var(--font-inter)] text-[13px] font-semibold uppercase tracking-[0.08em] text-[var(--text-dim)] transition-colors hover:text-[var(--green)]"
+              className="group relative font-[family-name:var(--font-inter)] text-[13px] font-semibold uppercase tracking-[0.08em] text-[#9f9f9f] transition-colors hover:text-[var(--green)]"
             >
               {link.label}
               <span className="absolute inset-x-0 -bottom-2 h-0.5 origin-left scale-x-0 rounded-full bg-[var(--green)] transition-transform duration-200 group-hover:scale-x-100" />
@@ -62,7 +62,7 @@ export default function Header() {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <div className="rounded-full border border-[var(--green-border)] bg-[var(--green-light)] px-4 py-2 text-right">
+          <div className="rounded-full border border-[var(--green-border)] bg-[var(--green-light)] px-4 py-2 text-center">
             <p className="font-[family-name:var(--font-inter)] text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--green)]">
               Free Quote
             </p>
