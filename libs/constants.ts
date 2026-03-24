@@ -9,6 +9,15 @@ export const BUSINESS = {
   zip: "47904",
 } as const
 
+export const HERO = {
+  eyebrow: "Lafayette, Indiana's Local Dumpster Rental",
+  title: "Fast Dumpster Rental in Lafayette, IN",
+  subtitle: "Same-day or next-day delivery. No hidden fees.",
+  socialProof: "100+ Rentals Completed",
+  ratingLabel: "Rated 5 out of 5 by customers across more than 100 completed rentals",
+  imageAlt: "Roll-off dumpster container ready for delivery in Lafayette, Indiana",
+} as const
+
 export const PRICING = {
   tenYard: {
     size: "10 Yard",
