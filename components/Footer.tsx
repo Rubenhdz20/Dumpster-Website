@@ -35,7 +35,7 @@ export default function Footer() {
                 alt="HIDA Dumpster"
                 width={160}
                 height={50}
-                style={{ height: 44, width: "auto", objectFit: "contain" }}
+                style={{ height: 200, width: "auto", objectFit: "contain" }}
               />
             </div>
 
