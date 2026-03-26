@@ -1,3 +1,4 @@
+import { MessageCircle, Phone } from "lucide-react"
 import { BUSINESS, SERVICE_AREAS } from "@/libs/constants"
 
 const mapEmbedUrl =
@@ -175,17 +176,19 @@ export default function ServiceAreas() {
               <div className="mt-5 flex flex-col gap-3 sm:flex-row">
                 <a
                   href={BUSINESS.phoneHref}
-                  className="inline-flex items-center justify-center rounded-[12px] bg-[var(--green)] px-5 py-3 font-[family-name:var(--font-inter)] text-[14px] font-bold text-white transition-colors hover:bg-[var(--green-dark)]"
+                  className="inline-flex items-center justify-center gap-2 rounded-[12px] bg-[var(--green)] px-5 py-3 font-[family-name:var(--font-inter)] text-[14px] font-bold text-white transition-colors hover:bg-[var(--green-dark)]"
                 >
-                  Call {BUSINESS.phone}
+                  <Phone aria-hidden="true" className="h-5 w-5 shrink-0" strokeWidth={2.25} />
+                  <span>Call {BUSINESS.phone}</span>
                 </a>
                 <a
                   href={BUSINESS.sms}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-[12px] border border-[var(--green-border)] bg-white px-5 py-3 font-[family-name:var(--font-inter)] text-[14px] font-bold text-[var(--green)] transition-colors hover:bg-[var(--green-light)]"
+                  className="inline-flex items-center justify-center gap-2 rounded-[12px] border border-[var(--green-border)] bg-white px-5 py-3 font-[family-name:var(--font-inter)] text-[14px] font-bold text-[var(--green)] transition-colors hover:bg-[var(--green-light)]"
                 >
-                  Send us a Text
+                  <MessageCircle aria-hidden="true" className="h-5 w-5 shrink-0" strokeWidth={2.25} />
+                  <span>Send us a Text</span>
                 </a>
               </div>
             </div>

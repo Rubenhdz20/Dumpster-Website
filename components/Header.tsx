@@ -1,5 +1,6 @@
 "use client"
 
+import { MessageCircle, Phone } from "lucide-react"
 import { useEffect, useId, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
@@ -75,7 +76,7 @@ export default function Header() {
             href={BUSINESS.phoneHref}
             className="inline-flex items-center gap-3 rounded-[14px] bg-[var(--green)] px-5 py-3 text-white shadow-[0_10px_30px_rgba(56,142,60,0.28)] transition-all hover:bg-[var(--green-dark)] hover:shadow-[0_14px_36px_rgba(56,142,60,0.34)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--green)]"
           >
-            <span className="text-lg" aria-hidden="true">📞</span>
+            <Phone aria-hidden="true" className="h-5 w-5 shrink-0" strokeWidth={2.25} />
             <span>
               <span className="block font-[family-name:var(--font-inter)] text-[10px] font-semibold uppercase tracking-[0.14em] text-white/75">
                 Call Now
@@ -92,7 +93,10 @@ export default function Header() {
             href={BUSINESS.phoneHref}
             className="inline-flex items-center justify-center rounded-full bg-[var(--green)] px-4 py-2.5 font-[family-name:var(--font-inter)] text-sm font-bold text-white shadow-[0_10px_24px_rgba(56,142,60,0.22)] transition-colors hover:bg-[var(--green-dark)]"
           >
-            Call
+            <span className="inline-flex items-center gap-2">
+              <Phone aria-hidden="true" className="h-4 w-4 shrink-0" strokeWidth={2.25} />
+              <span>Call</span>
+            </span>
           </a>
           <button
             type="button"
@@ -143,9 +147,10 @@ export default function Header() {
               </p>
               <a
                 href={BUSINESS.phoneHref}
-                className="mt-4 inline-flex font-[family-name:var(--font-inter)] text-base font-bold text-[var(--green)]"
+                className="mt-4 inline-flex items-center gap-2 font-[family-name:var(--font-inter)] text-base font-bold text-[var(--green)]"
               >
-                {BUSINESS.phone}
+                <Phone aria-hidden="true" className="h-4 w-4 shrink-0" strokeWidth={2.25} />
+                <span>{BUSINESS.phone}</span>
               </a>
               <p className="mt-1 font-[family-name:var(--font-inter)] text-sm text-[var(--text-dim)]">
                 {BUSINESS.email}
@@ -157,7 +162,10 @@ export default function Header() {
                 href={BUSINESS.phoneHref}
                 className="inline-flex items-center justify-center rounded-[16px] bg-[var(--green)] px-5 py-4 font-[family-name:var(--font-inter)] text-base font-bold text-white transition-colors hover:bg-[var(--green-dark)]"
               >
-                📞 Call for a Free Quote
+                <span className="inline-flex items-center gap-2">
+                  <Phone aria-hidden="true" className="h-5 w-5 shrink-0" strokeWidth={2.25} />
+                  <span>Call for a Free Quote</span>
+                </span>
               </a>
               <a
                 href={BUSINESS.sms}
@@ -165,7 +173,10 @@ export default function Header() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center rounded-[16px] bg-[var(--whatsapp)] px-5 py-4 font-[family-name:var(--font-inter)] text-base font-bold text-white"
               >
-                💬 Send us a Text
+                <span className="inline-flex items-center gap-2">
+                  <MessageCircle aria-hidden="true" className="h-5 w-5 shrink-0" strokeWidth={2.25} />
+                  <span>Send us a Text</span>
+                </span>
               </a>
             </div>
           </div>

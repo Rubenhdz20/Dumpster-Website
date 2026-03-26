@@ -1,3 +1,4 @@
+import { Phone } from "lucide-react"
 import { BUSINESS, HERO } from "@/libs/constants"
 
 type Reason = {
@@ -71,9 +72,10 @@ export default function WhyChooseUs() {
               </p>
               <a
                 href={BUSINESS.phoneHref}
-                className="inline-flex items-center justify-center rounded-[12px] bg-[var(--green)] px-4 py-3 font-[family-name:var(--font-inter)] text-[14px] font-bold text-white transition-colors hover:bg-[var(--green-dark)]"
+                className="inline-flex items-center justify-center gap-2 rounded-[12px] bg-[var(--green)] px-4 py-3 font-[family-name:var(--font-inter)] text-[14px] font-bold text-white transition-colors hover:bg-[var(--green-dark)]"
               >
-                Call {BUSINESS.phone}
+                <Phone aria-hidden="true" className="h-5 w-5 shrink-0" strokeWidth={2.25} />
+                <span>Call {BUSINESS.phone}</span>
               </a>
             </div>
           </div>

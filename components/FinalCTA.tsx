@@ -1,3 +1,4 @@
+import { Mail, MessageCircle, Phone } from "lucide-react"
 import { BUSINESS } from "@/libs/constants"
 
 const closingPoints = [
@@ -53,23 +54,26 @@ export default function FinalCTA() {
               <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a
                   href={BUSINESS.phoneHref}
-                  className="inline-flex items-center justify-center rounded-[14px] bg-[var(--green)] px-6 py-4 font-[family-name:var(--font-inter)] text-[15px] font-bold text-white shadow-[0_12px_28px_rgba(56,142,60,0.25)] transition-all hover:bg-[var(--green-dark)] hover:shadow-[0_16px_34px_rgba(56,142,60,0.3)]"
+                  className="inline-flex items-center justify-center gap-2 rounded-[14px] bg-[var(--green)] px-6 py-4 font-[family-name:var(--font-inter)] text-[15px] font-bold text-white shadow-[0_12px_28px_rgba(56,142,60,0.25)] transition-all hover:bg-[var(--green-dark)] hover:shadow-[0_16px_34px_rgba(56,142,60,0.3)]"
                 >
-                  Call {BUSINESS.phone}
+                  <Phone aria-hidden="true" className="h-5 w-5 shrink-0" strokeWidth={2.25} />
+                  <span>Call {BUSINESS.phone}</span>
                 </a>
                 <a
                   href={BUSINESS.sms}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-[14px] bg-[var(--whatsapp)] px-6 py-4 font-[family-name:var(--font-inter)] text-[15px] font-bold text-white transition-colors hover:brightness-95"
+                  className="inline-flex items-center justify-center gap-2 rounded-[14px] bg-[var(--whatsapp)] px-6 py-4 font-[family-name:var(--font-inter)] text-[15px] font-bold text-white transition-colors hover:brightness-95"
                 >
-                  Send us a Text
+                  <MessageCircle aria-hidden="true" className="h-5 w-5 shrink-0" strokeWidth={2.25} />
+                  <span>Send us a Text</span>
                 </a>
                 <a
                   href={`mailto:${BUSINESS.email}`}
-                  className="inline-flex items-center justify-center rounded-[14px] border border-[var(--green-border)] bg-white px-6 py-4 font-[family-name:var(--font-inter)] text-[15px] font-bold text-[var(--green)] transition-colors hover:bg-[var(--green-light)]"
+                  className="inline-flex items-center justify-center gap-2 rounded-[14px] border border-[var(--green-border)] bg-white px-6 py-4 font-[family-name:var(--font-inter)] text-[15px] font-bold text-[var(--green)] transition-colors hover:bg-[var(--green-light)]"
                 >
-                  Email Us
+                  <Mail aria-hidden="true" className="h-5 w-5 shrink-0" strokeWidth={2.25} />
+                  <span>Email Us</span>
                 </a>
               </div>
             </div>

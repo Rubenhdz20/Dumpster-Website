@@ -1,3 +1,4 @@
+import { MessageCircle, Phone } from "lucide-react"
 import Image from "next/image"
 import { BUSINESS, HERO } from "../libs/constants"
 
@@ -5,7 +6,7 @@ const ctaLinks = [
   {
     href: BUSINESS.phoneHref,
     label: "Call for a Free Quote",
-    icon: "📞",
+    icon: Phone,
     className:
       "bg-[var(--green)] shadow-[0_4px_20px_rgba(56,142,60,0.35)] hover:bg-[var(--green-dark)] focus-visible:outline-[var(--green)] md:shadow-[0_4px_20px_rgba(56,142,60,0.4)]",
     external: false,
@@ -13,7 +14,7 @@ const ctaLinks = [
   {
     href: BUSINESS.sms,
     label: "Send us a Text",
-    icon: "💬",
+    icon: MessageCircle,
     className:
       "bg-[var(--whatsapp)] hover:brightness-95 focus-visible:outline-[var(--whatsapp)]",
     external: true,
@@ -78,7 +79,7 @@ export default function Hero() {
                   rel={link.external ? "noopener noreferrer" : undefined}
                   className={`inline-flex items-center justify-center gap-2 rounded-[10px] px-6 py-4 font-[family-name:var(--font-inter)] text-[15px] font-bold text-white no-underline transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 md:px-8 ${link.className}`}
                 >
-                  <span aria-hidden="true">{link.icon}</span>
+                  <link.icon aria-hidden="true" className="h-5 w-5 shrink-0" strokeWidth={2.25} />
                   <span>{link.label}</span>
                 </a>
               ))}
