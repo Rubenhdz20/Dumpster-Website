@@ -2,7 +2,7 @@ export const BUSINESS = {
   name: "HIDA Dumpster",
   phone: "(765) 586-7136",
   phoneHref: "tel:+17655867136",
-  sms: "sms:+17655867136&body=Hi%20HIDA%20Dumpster%2C%20I%27d%20like%20to%20get%20a%20quote",
+  sms: "sms:+17655867136&body=Hi%20HIDA%20Junk%2C%20I%27d%20like%20to%20get%20a%20quote",
   email: "andresrmzhidalgo@gmail.com",
   hours: "6:00 AM – 7:00 PM Daily",
   city: "Lafayette, Indiana",
