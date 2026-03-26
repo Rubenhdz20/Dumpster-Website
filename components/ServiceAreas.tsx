@@ -180,12 +180,12 @@ export default function ServiceAreas() {
                   Call {BUSINESS.phone}
                 </a>
                 <a
-                  href={BUSINESS.whatsapp}
+                  href={BUSINESS.sms}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center rounded-[12px] border border-[var(--green-border)] bg-white px-5 py-3 font-[family-name:var(--font-inter)] text-[14px] font-bold text-[var(--green)] transition-colors hover:bg-[var(--green-light)]"
                 >
-                  Message on WhatsApp
+                  Send us a Text
                 </a>
               </div>
             </div>

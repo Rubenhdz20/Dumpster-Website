@@ -11,8 +11,8 @@ const ctaLinks = [
     external: false,
   },
   {
-    href: BUSINESS.whatsapp,
-    label: "Message on WhatsApp",
+    href: BUSINESS.sms,
+    label: "Send us a Text",
     icon: "💬",
     className:
       "bg-[var(--whatsapp)] hover:brightness-95 focus-visible:outline-[var(--whatsapp)]",

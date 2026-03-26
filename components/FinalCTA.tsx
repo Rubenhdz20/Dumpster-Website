@@ -1,4 +1,4 @@
-import { BUSINESS, HERO, PRICING } from "@/libs/constants"
+import { BUSINESS } from "@/libs/constants"
 
 const closingPoints = [
   "Fast answers from a local owner-operated team",
@@ -6,20 +6,6 @@ const closingPoints = [
   "Clear pricing before the dumpster is delivered",
 ] as const
 
-const quickStats = [
-  {
-    value: `${PRICING.tenYard.size} from $${PRICING.tenYard.price}`,
-    label: "entry pricing",
-  },
-  {
-    value: HERO.socialProof,
-    label: "completed locally",
-  },
-  {
-    value: BUSINESS.hours.replace(" Daily", ""),
-    label: "available every day",
-  },
-] as const
 
 export default function FinalCTA() {
   return (
@@ -72,12 +58,12 @@ export default function FinalCTA() {
                   Call {BUSINESS.phone}
                 </a>
                 <a
-                  href={BUSINESS.whatsapp}
+                  href={BUSINESS.sms}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center rounded-[14px] bg-[var(--whatsapp)] px-6 py-4 font-[family-name:var(--font-inter)] text-[15px] font-bold text-white transition-colors hover:brightness-95"
                 >
-                  Message on WhatsApp
+                  Send us a Text
                 </a>
                 <a
                   href={`mailto:${BUSINESS.email}`}

@@ -160,12 +160,12 @@ export default function Header() {
                 📞 Call for a Free Quote
               </a>
               <a
-                href={BUSINESS.whatsapp}
+                href={BUSINESS.sms}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center rounded-[16px] bg-[var(--whatsapp)] px-5 py-4 font-[family-name:var(--font-inter)] text-base font-bold text-white"
               >
-                💬 WhatsApp Us
+                💬 Send us a Text
               </a>
             </div>
           </div>
