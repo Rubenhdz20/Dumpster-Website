@@ -87,7 +87,7 @@ export default function WhyChooseUs() {
               ))}
             </ul>
 
-            <div className="mt-6 grid gap-4 rounded-[24px] bg-[var(--green)] px-6 py-6 text-white shadow-[0_12px_32px_rgba(56,142,60,0.2)] sm:grid-cols-3">
+            <div data-testid="stats-bar" className="mt-6 grid gap-4 rounded-[24px] bg-[var(--green)] px-6 py-6 text-white shadow-[0_12px_32px_rgba(56,142,60,0.2)] sm:grid-cols-3">
               <div>
                 <p className="font-[family-name:var(--font-barlow-condensed)] text-[44px] font-extrabold uppercase leading-none">
                   100+

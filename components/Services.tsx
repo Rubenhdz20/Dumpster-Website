@@ -50,6 +50,7 @@ function ServiceCard({ service }: { service: Service }) {
   return (
     <li className="h-full list-none">
       <article
+        data-testid="service-card"
         className={`group flex h-full flex-col rounded-[18px] border bg-white p-5 shadow-[0_8px_30px_rgba(0,0,0,0.05)] transition-transform duration-200 hover:-translate-y-1 ${service.featured ? "border-[var(--green)] bg-[linear-gradient(180deg,#ffffff_0%,#f5fbf6_100%)]" : "border-[var(--border)]"}`}
       >
         <div className="mb-4 flex items-start justify-between gap-3">

@@ -37,21 +37,6 @@ const faqs: readonly FAQItem[] = [
   },
 ] as const
 
-const quickFacts = [
-  {
-    value: "7 days",
-    label: "standard rental period",
-  },
-  {
-    value: "2 tons",
-    label: "included with every dumpster",
-  },
-  {
-    value: "Next-day",
-    label: "delivery always available",
-  },
-] as const
-
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
@@ -101,6 +86,7 @@ export default function FAQ() {
                   <button
                     id={buttonId}
                     type="button"
+                    data-testid="faq-button"
                     aria-expanded={isOpen}
                     aria-controls={answerId}
                     onClick={() => setOpenIndex(isOpen ? null : index)}

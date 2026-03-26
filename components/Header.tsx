@@ -36,9 +36,9 @@ export default function Header() {
   }, [menuOpen])
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-[color:var(--border)] bg-white/92 backdrop-blur-md">
+    <header data-testid="header" className="fixed inset-x-0 top-0 z-50 border-b border-[color:var(--border)] bg-white/92 backdrop-blur-md">
       <div className="mx-auto flex h-[84px] max-w-[1120px] items-center justify-between gap-4 px-5 lg:px-10">
-        <Link href="/" className="flex min-w-0 items-center" aria-label={`${BUSINESS.name} home`}>
+        <Link href="/" data-testid="logo" className="flex min-w-0 items-center" aria-label={`${BUSINESS.name} home`}>
           <Image
             src="/images/Logo.png"
             alt="HIDA Dumpster"
@@ -49,7 +49,7 @@ export default function Header() {
           />
         </Link>
 
-        <nav aria-label="Primary" className="hidden items-center gap-7 lg:flex">
+        <nav aria-label="Primary" data-testid="nav-desktop" className="hidden items-center gap-7 lg:flex">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -74,6 +74,7 @@ export default function Header() {
 
           <a
             href={BUSINESS.phoneHref}
+            data-testid="header-phone-desktop"
             className="inline-flex items-center gap-3 rounded-[14px] bg-[var(--green)] px-5 py-3 text-white shadow-[0_10px_30px_rgba(56,142,60,0.28)] transition-all hover:bg-[var(--green-dark)] hover:shadow-[0_14px_36px_rgba(56,142,60,0.34)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--green)]"
           >
             <Phone aria-hidden="true" className="h-5 w-5 shrink-0" strokeWidth={2.25} />
@@ -91,6 +92,7 @@ export default function Header() {
         <div className="flex items-center gap-2 lg:hidden">
           <a
             href={BUSINESS.phoneHref}
+            data-testid="mobile-call-header"
             className="inline-flex items-center justify-center rounded-full bg-[var(--green)] px-4 py-2.5 font-[family-name:var(--font-inter)] text-sm font-bold text-white shadow-[0_10px_24px_rgba(56,142,60,0.22)] transition-colors hover:bg-[var(--green-dark)]"
           >
             <span className="inline-flex items-center gap-2">
@@ -100,6 +102,7 @@ export default function Header() {
           </a>
           <button
             type="button"
+            data-testid="hamburger"
             onClick={() => setMenuOpen((open) => !open)}
             aria-expanded={menuOpen}
             aria-controls={menuId}
@@ -116,7 +119,7 @@ export default function Header() {
       </div>
 
       {menuOpen && (
-        <div className="fixed inset-x-0 bottom-0 top-[84px] z-40 bg-black/20 px-4 py-4 lg:hidden">
+        <div data-testid="mobile-menu" className="fixed inset-x-0 bottom-0 top-[84px] z-40 bg-black/20 px-4 py-4 lg:hidden">
           <div
             id={menuId}
             className="mx-auto flex max-w-[1120px] flex-col gap-5 overflow-hidden rounded-[24px] border border-white/70 bg-white p-5 shadow-[0_24px_80px_rgba(17,17,17,0.18)]"
@@ -160,6 +163,7 @@ export default function Header() {
             <div className="grid gap-3 sm:grid-cols-2">
               <a
                 href={BUSINESS.phoneHref}
+                data-testid="mobile-cta-call"
                 className="inline-flex items-center justify-center rounded-[16px] bg-[var(--green)] px-5 py-4 font-[family-name:var(--font-inter)] text-base font-bold text-white transition-colors hover:bg-[var(--green-dark)]"
               >
                 <span className="inline-flex items-center gap-2">
@@ -169,6 +173,7 @@ export default function Header() {
               </a>
               <a
                 href={BUSINESS.sms}
+                data-testid="mobile-cta-sms"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center rounded-[16px] bg-[var(--whatsapp)] px-5 py-4 font-[family-name:var(--font-inter)] text-base font-bold text-white"
