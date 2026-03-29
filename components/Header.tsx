@@ -45,7 +45,7 @@ export default function Header() {
             width={180}
             height={56}
             priority
-            className="h-[130px] w-auto object-contain sm:h-[74px] md:h-[150px] lg:h-[170px]"
+            className="h-[130px] w-auto object-contain md:h-[150px] lg:h-[170px]"
           />
         </Link>
 
@@ -117,7 +117,6 @@ export default function Header() {
           </button>
         </div>
       </div>
-
       {menuOpen && (
         <div data-testid="mobile-menu" className="fixed inset-x-0 bottom-0 top-[84px] z-40 bg-black/20 px-4 py-4 lg:hidden">
           <div

@@ -1,5 +1,6 @@
 export const BUSINESS = {
   name: "HIDA Dumpster",
+  url: "https://hidajunk.com",
   phone: "(765) 586-7136",
   phoneHref: "tel:+17655867136",
   sms: "sms:+17655867136&body=Hi%20HIDA%20Junk%2C%20I%27d%20like%20to%20get%20a%20quote",
@@ -52,3 +53,8 @@ export const SERVICE_AREAS = [
   "Monticello",
   "Attica",
 ] as const
+
+export const FEATURES = {
+  googleReviewEnabled: false,
+  googleReviewLink: "https://g.page/r/YOUR_LINK_HERE",
+} as const

@@ -25,7 +25,7 @@ export default function Hero() {
   return (
     <section id="hero" aria-labelledby="hero-title">
       <div className="relative overflow-hidden md:min-h-[580px]">
-        <div className="relative h-[350px] w-full md:absolute md:inset-0 md:h-full">
+        <div className="relative h-[450px] w-full md:absolute md:inset-0 md:h-full">
         <Image
           src="/images/heroimage.jpeg"
           alt={HERO.imageAlt}

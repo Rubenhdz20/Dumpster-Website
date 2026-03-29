@@ -1,3 +1,4 @@
+import CommentForm from "@/components/CommentForm";
 import FAQ from "@/components/FAQ";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
@@ -22,6 +23,7 @@ export default function Home() {
       <WhyChooseUs></WhyChooseUs>
       <ServiceAreas></ServiceAreas>
       <Reviews></Reviews>
+      <CommentForm></CommentForm>
       <FAQ></FAQ>
       <FinalCTA></FinalCTA>
       <Footer></Footer>

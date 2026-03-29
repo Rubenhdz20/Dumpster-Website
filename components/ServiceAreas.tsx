@@ -130,7 +130,6 @@ export default function ServiceAreas() {
 
             <Callout />
           </div>
-
           <aside className="overflow-hidden rounded-[28px] border border-[var(--green-border)] bg-white shadow-[0_18px_40px_rgba(56,142,60,0.12)]">
             <div className="border-b border-[var(--green-border)] bg-[linear-gradient(135deg,#eef8ef_0%,#ffffff_100%)] px-6 py-5">
               <p className="mb-2 font-[family-name:var(--font-inter)] text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--green)]">
