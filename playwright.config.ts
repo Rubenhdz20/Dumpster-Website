@@ -1,5 +1,8 @@
 import { defineConfig, devices } from "@playwright/test"
 
+const galaxyTab = devices["Galaxy Tab S4"]
+const { viewport: _viewport, ...galaxyTabNoViewport } = galaxyTab
+
 export default defineConfig({
   testDir: "./tests",
   testMatch: "**/*.spec.ts",
@@ -29,8 +32,8 @@ export default defineConfig({
     {
       name: "tablet",
       use: {
+        ...galaxyTabNoViewport,
         viewport: { width: 768, height: 1024 },
-        ...devices["Galaxy Tab S4"],
       },
     },
   ],
