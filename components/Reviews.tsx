@@ -26,7 +26,7 @@ const reviews: readonly Review[] = [
     name: "James R.",
     location: "Lafayette, IN",
     rating: 5,
-    review: "Fast delivery and honest pricing...",
+    review: "Fast delivery and honest pricing",
     highlight: "Exact placement and straightforward pricing",
   },
   {
@@ -34,7 +34,7 @@ const reviews: readonly Review[] = [
     name: "Maria L.",
     location: "Lafayette, IN",
     rating: 5,
-    review: "Very easy to book, next-day delivery...",
+    review: "Very easy to book, next-day delivery",
     highlight: "Next-day delivery with documented weights",
   },
 ] as const
@@ -169,10 +169,8 @@ function ReviewCard({ review }: { review: Review }) {
         </div>
 
         <p className="mb-5 font-[family-name:var(--font-barlow)] text-[16px] leading-7 text-[var(--text-dim)]">
-          &ldquo;{review.review}&rdquo;
+          {review.review}
         </p>
-
-     
       </article>
     </li>
   )

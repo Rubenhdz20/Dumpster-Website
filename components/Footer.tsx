@@ -117,6 +117,15 @@ export default function Footer() {
           <p className="font-[family-name:var(--font-inter)] text-[12px] text-[var(--text-muted)]">
             {BUSINESS.city} · Fast local dumpster rental
           </p>
+          <p className="text-[12px] text-[#aaaaaa] mt-1">
+              Designed & developed by{" "}
+              <a
+                href="mailto:rubenhernandezalvarado42@gmail.com"
+                className="text-[#388e3c] hover:underline font-medium"
+              >
+                Ruben
+              </a>
+          </p>
         </div>
       </div>
     </footer>

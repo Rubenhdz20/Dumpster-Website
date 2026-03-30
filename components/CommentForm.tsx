@@ -8,6 +8,7 @@ export default function CommentForm() {
   const [rating, setRating] = useState(5)
   const [hovered, setHovered] = useState(0)
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
+  const [honeypot, setHoneypot] = useState("")
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -17,7 +18,7 @@ export default function CommentForm() {
       const response = await fetch("/api/comments", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, comment, rating }),
+        body: JSON.stringify({ name, comment, rating, honeypot }),
       })
 
       if (!response.ok) throw new Error("Failed to submit")
@@ -75,7 +76,17 @@ export default function CommentForm() {
 
         {status !== "success" && (
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-
+            {/* Honeypot — hidden from humans, bots will fill it */}
+            <input
+              type="text"
+              name="honeypot"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+              style={{ display: "none" }}
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+            />
             {/* Name */}
             <div>
               <label htmlFor="name" className="block font-semibold text-[13px] text-[#333] mb-1.5">
@@ -135,6 +146,12 @@ export default function CommentForm() {
                 rows={5}
                 className="w-full border border-[#e0e0e0] rounded-xl px-4 py-3 text-[14px] text-[#111] placeholder:text-[#aaa] focus:outline-none focus:border-[#388e3c] focus:ring-2 focus:ring-[#388e3c]/20 transition-colors resize-none"
               />
+              {/* Add this below the textarea character counter: */}
+              {comment.trim().length > 0 && comment.trim().length < 10 && (
+                <p className="text-[11px] text-red-400 mt-1">
+                  Comment must be at least 10 characters
+                </p>
+              )}
               <p className="text-[11px] text-[#aaa] mt-1 text-right">
                 {comment.length}/1000
               </p>
@@ -142,7 +159,7 @@ export default function CommentForm() {
 
             <button
               type="submit"
-              disabled={status === "loading"}
+              disabled={status === "loading" || comment.trim().length < 10}
               className="w-full bg-[#388e3c] hover:bg-[#2e7d32] disabled:opacity-60 text-white font-bold text-[15px] py-4 rounded-xl transition-colors"
             >
               {status === "loading" ? "Submitting..." : "Submit Comment"}
