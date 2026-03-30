@@ -48,7 +48,7 @@ export default function Reviews() {
     <section
       id="reviews"
       aria-labelledby="reviews-title"
-      className="bg-[var(--surface)] py-16 lg:py-20"
+      className="overflow-hidden bg-[var(--surface)] py-16 lg:py-20"
     >
       <div className="mx-auto max-w-[1120px] px-5">
         <div className="grid gap-8 lg:grid-cols-[minmax(0,360px)_minmax(0,1fr)] lg:items-start lg:gap-10">
@@ -89,7 +89,7 @@ export default function Reviews() {
           </div>
 
           {/* Right column */}
-          <div>
+          <div className="min-w-0 overflow-hidden">
             <ReviewsCarousel />
 
             <div className="mt-6 rounded-[24px] bg-[var(--green)] px-6 py-6 text-white shadow-[0_12px_32px_rgba(56,142,60,0.2)]">
@@ -132,6 +132,7 @@ function ReviewsCarousel() {
     loop: false,
     align: "start",
     slidesToScroll: 1,
+    containScroll: "trimSnaps",
   })
 
   const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi])
@@ -144,14 +145,12 @@ function ReviewsCarousel() {
     })
   }, [emblaApi])
 
-  // Fetch approved comments and merge with placeholders
   useEffect(() => {
     async function fetchComments() {
       try {
         const res = await fetch("/api/comments")
         const data = await res.json()
         const approved: ApprovedComment[] = data.comments || []
-
         const mapped: Review[] = approved.map((c) => ({
           initials: c.name.charAt(0).toUpperCase(),
           name: c.name,
@@ -159,8 +158,6 @@ function ReviewsCarousel() {
           review: c.comment,
           rating: c.rating,
         }))
-
-        // Placeholders first, then real comments
         setAllReviews([...placeholderReviews, ...mapped])
       } catch {
         console.error("Failed to fetch comments")
@@ -170,7 +167,8 @@ function ReviewsCarousel() {
   }, [])
 
   return (
-    <div>
+    <div className="w-full min-w-0">
+
       {/* Header row with arrows */}
       <div className="mb-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
@@ -198,16 +196,16 @@ function ReviewsCarousel() {
       </div>
 
       {/* Carousel */}
-      <div className="overflow-hidden" ref={emblaRef}>
+      <div className="w-full overflow-hidden" ref={emblaRef}>
         <ul
-          className="flex gap-4"
+          className="flex"
           aria-label="Customer reviews"
           style={{ touchAction: "pan-y" }}
         >
           {allReviews.map((review, index) => (
             <li
               key={index}
-              className="min-w-0 flex-[0_0_100%] md:flex-[0_0_calc(50%-8px)]"
+              className="min-w-0 flex-[0_0_100%] pr-4"
             >
               <ReviewCard review={review} />
             </li>
