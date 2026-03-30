@@ -1,6 +1,7 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import useEmblaCarousel from "embla-carousel-react"
+import { useCallback, useEffect, useState } from "react"
 import { BUSINESS, FEATURES, HERO } from "@/libs/constants"
 
 type Review = {
@@ -9,7 +10,6 @@ type Review = {
   location: string
   review: string
   rating?: number
-  highlight?: string
 }
 
 type ApprovedComment = {
@@ -20,38 +20,27 @@ type ApprovedComment = {
   created_at: string
 }
 
-const reviews: readonly Review[] = [
+const placeholderReviews: Review[] = [
   {
     initials: "JR",
     name: "James R.",
     location: "Lafayette, IN",
     rating: 5,
-    review: "Fast delivery and honest pricing",
-    highlight: "Exact placement and straightforward pricing",
+    review: "Fast delivery and honest pricing. The driver was professional and placed the container exactly where I needed it. Will use again for my next project.",
   },
   {
     initials: "ML",
     name: "Maria L.",
     location: "Lafayette, IN",
     rating: 5,
-    review: "Very easy to book, next-day delivery",
-    highlight: "Next-day delivery with documented weights",
+    review: "Very easy to book, next-day delivery as promised. The weight receipt was a nice touch with no surprises on the bill. Highly recommend.",
   },
-] as const
+]
 
 const trustPoints = [
-  {
-    value: "5.0",
-    label: "customer rating",
-  },
-  {
-    value: "100+",
-    label: HERO.socialProof.toLowerCase(),
-  },
-  {
-    value: "Local",
-    label: "owner-led service",
-  },
+  { value: "5.0", label: "customer rating" },
+  { value: "100+", label: HERO.socialProof.toLowerCase() },
+  { value: "Local", label: "owner-led service" },
 ] as const
 
 export default function Reviews() {
@@ -63,6 +52,8 @@ export default function Reviews() {
     >
       <div className="mx-auto max-w-[1120px] px-5">
         <div className="grid gap-8 lg:grid-cols-[minmax(0,360px)_minmax(0,1fr)] lg:items-start lg:gap-10">
+
+          {/* Left column */}
           <div>
             <div className="mb-3 flex items-center gap-2.5">
               <div className="h-0.5 w-8 bg-[var(--green)]" />
@@ -77,7 +68,8 @@ export default function Reviews() {
               Trusted by cleanup jobs across Lafayette
             </h2>
             <p className="mb-6 max-w-[34ch] font-[family-name:var(--font-barlow)] text-[16px] leading-7 text-[var(--text-dim)]">
-              Customers come back for clear pricing, fast delivery, and direct communication from the first call to final pickup.
+              Customers come back for clear pricing, fast delivery, and direct
+              communication from the first call to final pickup.
             </p>
             <div className="mb-6 grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
               {trustPoints.map((point) => (
@@ -95,13 +87,11 @@ export default function Reviews() {
               ))}
             </div>
           </div>
+
+          {/* Right column */}
           <div>
-            <ul className="grid gap-4 md:grid-cols-2" aria-label="Customer reviews">
-              {reviews.map((review) => (
-                <ReviewCard key={review.name} review={review} />
-              ))}
-            </ul>
-            <ApprovedComments />
+            <ReviewsCarousel />
+
             <div className="mt-6 rounded-[24px] bg-[var(--green)] px-6 py-6 text-white shadow-[0_12px_32px_rgba(56,142,60,0.2)]">
               <p className="font-[family-name:var(--font-inter)] text-[11px] font-semibold uppercase tracking-[0.16em] text-white/75">
                 Reputation built locally
@@ -110,12 +100,12 @@ export default function Reviews() {
                 Straight answers, clean drop-offs, reliable pickup
               </h3>
               <p className="mt-3 max-w-[60ch] font-[family-name:var(--font-barlow)] text-[15px] leading-6 text-white/85">
-                That is the pattern behind the reviews we get from homeowners, contractors, and property managers around {BUSINESS.city}.
+                That is the pattern behind the reviews we get from homeowners,
+                contractors, and property managers around {BUSINESS.city}.
               </p>
             </div>
-            {/* Feedback buttons */}
+
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              {/* Google review button — only shown when verified */}
               {FEATURES.googleReviewEnabled && (
                 <a
                   href={FEATURES.googleReviewLink}
@@ -134,86 +124,155 @@ export default function Reviews() {
   )
 }
 
-function ReviewCard({ review }: { review: Review }) {
-  return (
-    <li className="list-none">
-      <article className="flex h-full flex-col rounded-[20px] border border-[var(--border)] bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.05)] transition-transform duration-200 hover:-translate-y-1">
-        <div className="mb-5 flex items-start justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--green-light)] shadow-inner">
-              <span className="font-[family-name:var(--font-inter)] text-[13px] font-bold text-[var(--green)]">
-                {review.initials}
-              </span>
-            </div>
-            <div>
-              <p className="font-[family-name:var(--font-inter)] text-[15px] font-bold text-[var(--text)]">
-                {review.name}
-              </p>
-              <p className="font-[family-name:var(--font-inter)] text-[12px] font-medium text-[var(--text-muted)]">
-                {review.location}
-              </p>
-            </div>
-          </div>
-          <span className="rounded-full bg-[var(--green-light)] px-3 py-1 font-[family-name:var(--font-inter)] text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--green)]">
-            Verified
-          </span>
-        </div>
+function ReviewsCarousel() {
+  const [allReviews, setAllReviews] = useState<Review[]>(placeholderReviews)
+  const [selectedIndex, setSelectedIndex] = useState(0)
 
-        <div className="mb-4 flex items-center gap-2" aria-hidden="true">
-          <span className="text-[#f5a623] text-base">
-            {"★".repeat(review.rating ?? 5)}{"☆".repeat(5 - (review.rating ?? 5))}
-          </span>
-          <span className="font-[family-name:var(--font-inter)] text-[12px] font-semibold uppercase tracking-[0.08em] text-[var(--text-dim)]">
-            {`${review.rating ?? 5} out of 5`}
-          </span>
-        </div>
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: false,
+    align: "start",
+    slidesToScroll: 1,
+  })
 
-        <p className="mb-5 font-[family-name:var(--font-barlow)] text-[16px] leading-7 text-[var(--text-dim)]">
-          {review.review}
-        </p>
-      </article>
-    </li>
-  )
-}
+  const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi])
+  const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi])
 
-function ApprovedComments() {
-  const [comments, setComments] = useState<ApprovedComment[]>([])
-  const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    if (!emblaApi) return
+    emblaApi.on("select", () => {
+      setSelectedIndex(emblaApi.selectedScrollSnap())
+    })
+  }, [emblaApi])
 
+  // Fetch approved comments and merge with placeholders
   useEffect(() => {
     async function fetchComments() {
       try {
         const res = await fetch("/api/comments")
         const data = await res.json()
-        setComments(data.comments || [])
+        const approved: ApprovedComment[] = data.comments || []
+
+        const mapped: Review[] = approved.map((c) => ({
+          initials: c.name.charAt(0).toUpperCase(),
+          name: c.name,
+          location: "Lafayette, IN",
+          review: c.comment,
+          rating: c.rating,
+        }))
+
+        // Placeholders first, then real comments
+        setAllReviews([...placeholderReviews, ...mapped])
       } catch {
         console.error("Failed to fetch comments")
-      } finally {
-        setLoading(false)
       }
     }
     fetchComments()
   }, [])
 
-  if (loading || comments.length === 0) return null
-
   return (
-    <div className="mt-8">
-      <ul className="grid gap-4 md:grid-cols-2">
-        {comments.map((comment) => (
-          <ReviewCard
-            key={comment.id}
-            review={{
-              initials: comment.name.charAt(0).toUpperCase(),
-              name: comment.name,
-              location: "Lafayette, IN",
-              review: comment.comment,
-              highlight: "",
-              rating: comment.rating,
-            }}
-          />
-        ))}
-      </ul>
+    <div>
+      {/* Header row with arrows */}
+      <div className="mb-4 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className="h-0.5 w-6 bg-[var(--green)]" />
+          <span className="font-[family-name:var(--font-inter)] text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--green)]">
+            What they say
+          </span>
+        </div>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={scrollPrev}
+            aria-label="Previous review"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-[var(--border)] bg-white text-[var(--text-dim)] transition-colors hover:border-[var(--green)] hover:text-[var(--green)]"
+          >
+            ‹
+          </button>
+          <button
+            onClick={scrollNext}
+            aria-label="Next review"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-[var(--border)] bg-white text-[var(--text-dim)] transition-colors hover:border-[var(--green)] hover:text-[var(--green)]"
+          >
+            ›
+          </button>
+        </div>
+      </div>
+
+      {/* Carousel */}
+      <div className="overflow-hidden" ref={emblaRef}>
+        <ul
+          className="flex gap-4"
+          aria-label="Customer reviews"
+          style={{ touchAction: "pan-y" }}
+        >
+          {allReviews.map((review, index) => (
+            <li
+              key={index}
+              className="min-w-0 flex-[0_0_100%] md:flex-[0_0_calc(50%-8px)]"
+            >
+              <ReviewCard review={review} />
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Dot indicators */}
+      {allReviews.length > 1 && (
+        <div className="mt-4 flex justify-center gap-1.5">
+          {allReviews.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => emblaApi?.scrollTo(index)}
+              aria-label={`Go to review ${index + 1}`}
+              className={`h-1.5 rounded-full transition-all duration-200 ${
+                index === selectedIndex
+                  ? "w-4 bg-[var(--green)]"
+                  : "w-1.5 bg-[var(--border)]"
+              }`}
+            />
+          ))}
+        </div>
+      )}
     </div>
+  )
+}
+
+function ReviewCard({ review }: { review: Review }) {
+  return (
+    <article className="flex h-full flex-col rounded-[20px] border border-[var(--border)] bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.05)] transition-transform duration-200 hover:-translate-y-1">
+      <div className="mb-5 flex items-start justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--green-light)] shadow-inner">
+            <span className="font-[family-name:var(--font-inter)] text-[13px] font-bold text-[var(--green)]">
+              {review.initials}
+            </span>
+          </div>
+          <div>
+            <p className="font-[family-name:var(--font-inter)] text-[15px] font-bold text-[var(--text)]">
+              {review.name}
+            </p>
+            <p className="font-[family-name:var(--font-inter)] text-[12px] font-medium text-[var(--text-muted)]">
+              {review.location}
+            </p>
+          </div>
+        </div>
+        <span className="rounded-full bg-[var(--green-light)] px-3 py-1 font-[family-name:var(--font-inter)] text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--green)]">
+          Verified
+        </span>
+      </div>
+
+      <div className="mb-4 flex items-center gap-2" aria-hidden="true">
+        <span className="text-[#f5a623] text-base">
+          {"★".repeat(review.rating ?? 5)}
+          {"☆".repeat(5 - (review.rating ?? 5))}
+        </span>
+        <span className="font-[family-name:var(--font-inter)] text-[12px] font-semibold uppercase tracking-[0.08em] text-[var(--text-dim)]">
+          {`${review.rating ?? 5} out of 5`}
+        </span>
+      </div>
+
+      <p className="font-[family-name:var(--font-barlow)] text-[16px] leading-7 text-[var(--text-dim)]">
+        {review.review}
+      </p>
+    </article>
   )
 }
