@@ -30,38 +30,6 @@ This single-page marketing site is designed to convert local search traffic into
 
 ---
 
-## Getting Started
-
-### Prerequisites
-
-- Node.js 18+
-- npm, yarn, or pnpm
-
-### Install & Run
-
-```bash
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-### Build for Production
-
-```bash
-npm run build
-npm run start
-```
-
-### Lint
-
-```bash
-npm run lint
-```
-
 ---
 
 ## Project Structure
