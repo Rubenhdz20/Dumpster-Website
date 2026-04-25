@@ -1,4 +1,4 @@
-# HIDA Dumpster — Marketing Website
+# HIDA Dumpster 
 
 A high-performance, conversion-focused landing page for **HIDA Dumpster**, a family-owned dumpster rental and junk removal service based in Lafayette, Indiana. Built with Next.js 16 and Tailwind CSS.
 
